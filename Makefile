@@ -10,7 +10,8 @@ swig: diag.i diag.cpp
 	g++ -std=c++14 diag.o diag_wrap.o -shared -o _diagswig.so $(PYTHONLIBS)
 
 diag: swig diag.cpp diag.hpp main.cpp
-	g++ -std=c++14 diag.cpp main.cpp -o diag
+	g++ -std=c++14 diag.cpp main.cpp $(PYTHONINCLUDES) $(PYTHONLIBS) -o diag
 
 test:
-	python test.py
+	python test_forward.py
+	python test_backward.py
