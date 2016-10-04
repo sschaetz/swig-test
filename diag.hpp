@@ -5,11 +5,19 @@
 class diag
 {
 public:
-    diag(){}
     diag(const char* id, int number);
     ~diag();
-    void print();
+    void p();
 private:
     std::string m_id;
     int m_number;
+};
+
+class diag_consumer
+{
+public:
+    diag_consumer(diag* d);
+    void p();
+private:
+    diag* m_d;
 };

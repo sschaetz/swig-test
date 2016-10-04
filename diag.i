@@ -11,9 +11,13 @@ public:
     diag(){}
     diag(const char* id, int number);
     ~diag();
-    void print();
-private:
-    std::string m_id;
-    int m_number;
+    void p();
 };
 
+
+class diag_consumer
+{
+public:
+    diag_consumer(diag* d);
+    void p();
+};
