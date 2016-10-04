@@ -1,2 +1,3 @@
-import diagswig
+def test(arg):
+    print(arg)
 
