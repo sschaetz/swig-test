@@ -9,6 +9,7 @@ int main(void)
 {
     // Create shared instance of diag.
     auto d = std::make_shared<diag>("super-id", 42);
+    auto d2 = std::make_shared<diag>("super-id-other", 3);
 
     // Try to call a ptyhon script.
     {
@@ -62,9 +63,10 @@ int main(void)
 
         // Wrap in python callable thing.
         auto obj = makeDiagPyObject(d);
-
-        auto args = PyTuple_New(1);
+        auto obj_capsule = PyCapsule_New(reinterpret_cast<void*>(d2.get()), nullptr, nullptr);
+        auto args = PyTuple_New(2);
         PyTuple_SetItem(args, 0, obj);
+        PyTuple_SetItem(args, 1, obj_capsule);
 
         PyObject* pValue = PyObject_CallObject(pFunc, args);
 

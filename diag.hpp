@@ -18,6 +18,5 @@ class diag_consumer
 public:
     diag_consumer(diag* d);
     void p();
-private:
     diag* m_d;
 };
